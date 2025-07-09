@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "DramaCraft": {
+      "command": "uv",
+      "args": ["run", "dramacraft", "start"],
+      "env": {
+        "LLM__PROVIDER": "baidu",
+        "LLM__API_KEY": "your_api_key_here",
+        "LLM__SECRET_KEY": "your_secret_key_here",
+        "LLM__MODEL_NAME": "ERNIE-Bot-turbo",
+        "VIDEO__OUTPUT_DIR": "./output",
+        "VIDEO__TEMP_DIR": "./temp",
+        "JIANYING__INSTALLATION_PATH": "/Applications/JianyingPro.app",
+        "JIANYING__DRAFT_DIR": "./drafts",
+        "JIANYING__AUTO_IMPORT": "true"
+      }
+    }
+  }
+}

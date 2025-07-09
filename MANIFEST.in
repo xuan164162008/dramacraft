@@ -1,0 +1,84 @@
+# DramaCraft Package Manifest
+
+# Include documentation
+include README.md
+include CHANGELOG.md
+include LICENSE
+include pyproject.toml
+
+# Include configuration files
+include .env.example
+recursive-include configs *.json
+recursive-include configs *.yaml
+recursive-include configs *.yml
+
+# Include documentation
+recursive-include docs *.md
+recursive-include docs *.rst
+recursive-include docs *.txt
+recursive-include docs *.html
+recursive-include docs *.css
+recursive-include docs *.js
+recursive-include docs *.png
+recursive-include docs *.jpg
+recursive-include docs *.gif
+recursive-include docs *.svg
+
+# Include examples
+recursive-include examples *.py
+recursive-include examples *.json
+recursive-include examples *.md
+recursive-include examples *.txt
+
+# Include scripts
+recursive-include scripts *.sh
+recursive-include scripts *.py
+recursive-include scripts *.bat
+
+# Include assets
+recursive-include assets *.json
+recursive-include assets *.yaml
+recursive-include assets *.yml
+recursive-include assets *.mp3
+recursive-include assets *.wav
+recursive-include assets *.png
+recursive-include assets *.jpg
+
+# Include test data (for development)
+recursive-include tests/data *.mp4
+recursive-include tests/data *.json
+recursive-include tests/data *.txt
+
+# Exclude development files
+exclude .gitignore
+exclude .pre-commit-config.yaml
+exclude tox.ini
+exclude Makefile
+exclude docker-compose.yml
+exclude Dockerfile
+
+# Exclude cache and build files
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.pyd
+global-exclude __pycache__
+global-exclude .pytest_cache
+global-exclude .mypy_cache
+global-exclude .coverage
+global-exclude htmlcov
+global-exclude .tox
+global-exclude build
+global-exclude dist
+global-exclude *.egg-info
+
+# Exclude IDE files
+global-exclude .vscode
+global-exclude .idea
+global-exclude *.swp
+global-exclude *.swo
+global-exclude *~
+
+# Exclude OS files
+global-exclude .DS_Store
+global-exclude Thumbs.db
+global-exclude desktop.ini

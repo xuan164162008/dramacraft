@@ -1,0 +1,325 @@
+# DramaCraft Docker 配置文件
+# 企业级容器化部署配置
+
+# AI服务配置
+ai:
+  # 默认使用百度千帆平台
+  provider: "baidu"
+  
+  # 百度千帆配置
+  baidu:
+    api_key: "${BAIDU_API_KEY}"
+    secret_key: "${BAIDU_SECRET_KEY}"
+    model: "ERNIE-Bot-turbo"
+    endpoint: "https://aip.baidubce.com"
+    timeout: 30
+  
+  # 阿里云通义千问配置
+  alibaba:
+    api_key: "${ALIBABA_API_KEY}"
+    model: "qwen-turbo"
+    endpoint: "https://dashscope.aliyuncs.com"
+    timeout: 30
+  
+  # 腾讯混元配置
+  tencent:
+    secret_id: "${TENCENT_SECRET_ID}"
+    secret_key: "${TENCENT_SECRET_KEY}"
+    model: "hunyuan-lite"
+    region: "ap-beijing"
+    timeout: 30
+
+# 视频处理配置
+video:
+  # 临时文件目录
+  temp_dir: "/app/temp"
+  
+  # 输出目录
+  output_dir: "/app/data/output"
+  
+  # 上传目录
+  upload_dir: "/app/data/uploads"
+  
+  # 质量设置
+  quality:
+    default: "high"
+    options:
+      low: {bitrate: "1M", resolution: "720p"}
+      medium: {bitrate: "3M", resolution: "1080p"}
+      high: {bitrate: "8M", resolution: "1080p"}
+      ultra: {bitrate: "15M", resolution: "4K"}
+  
+  # 支持的格式
+  formats:
+    input: ["mp4", "avi", "mov", "mkv", "webm", "flv"]
+    output: ["mp4", "webm", "mov"]
+  
+  # 处理限制
+  limits:
+    max_file_size: "2GB"
+    max_duration: 7200  # 2小时
+    max_resolution: "4K"
+    max_concurrent_jobs: 4
+
+# 音频处理配置
+audio:
+  # 支持的格式
+  formats:
+    input: ["mp3", "wav", "aac", "flac", "ogg"]
+    output: ["mp3", "wav", "aac"]
+  
+  # 质量设置
+  quality:
+    default: "high"
+    options:
+      low: {bitrate: "128k", sample_rate: "44100"}
+      medium: {bitrate: "192k", sample_rate: "44100"}
+      high: {bitrate: "320k", sample_rate: "48000"}
+  
+  # 处理选项
+  processing:
+    noise_reduction: true
+    normalization: true
+    enhancement: true
+
+# 安全配置
+security:
+  # JWT配置
+  jwt_secret_key: "${JWT_SECRET_KEY:-dramacraft-jwt-secret-key-change-this-in-production}"
+  jwt_algorithm: "HS256"
+  jwt_expiration: 3600  # 1小时
+  
+  # 会话配置
+  session_encryption_key: "${SESSION_ENCRYPTION_KEY:-dramacraft-session-key-32-bytes-long}"
+  session_timeout: 86400  # 24小时
+  
+  # 多因素认证
+  mfa_enabled: false
+  mfa_issuer: "DramaCraft"
+  
+  # 密码策略
+  password_policy:
+    min_length: 8
+    require_uppercase: true
+    require_lowercase: true
+    require_numbers: true
+    require_symbols: true
+  
+  # 访问控制
+  cors:
+    enabled: true
+    origins: ["*"]
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+    headers: ["*"]
+  
+  # 限流配置
+  rate_limiting:
+    enabled: true
+    requests_per_minute: 60
+    requests_per_hour: 1000
+    burst_size: 10
+
+# 服务器配置
+server:
+  # 监听配置
+  host: "${DRAMACRAFT_HOST:-0.0.0.0}"
+  port: ${DRAMACRAFT_PORT:-8080}
+  
+  # 工作进程
+  workers: ${DRAMACRAFT_WORKERS:-1}
+  
+  # 调试模式
+  debug: ${DRAMACRAFT_DEBUG:-false}
+  
+  # 超时设置
+  timeout: 300
+  keepalive: 2
+  
+  # SSL配置（生产环境）
+  ssl:
+    enabled: false
+    cert_file: "/app/ssl/cert.pem"
+    key_file: "/app/ssl/key.pem"
+
+# 数据库配置
+database:
+  # 数据库URL
+  url: "${DATABASE_URL:-sqlite:///app/data/dramacraft.db}"
+  
+  # 连接池配置
+  pool_size: 10
+  max_overflow: 20
+  pool_timeout: 30
+  pool_recycle: 3600
+  
+  # 查询配置
+  echo: false
+  echo_pool: false
+
+# 缓存配置
+cache:
+  # 缓存类型
+  type: "${CACHE_TYPE:-memory}"
+  
+  # 内存缓存配置
+  memory:
+    max_size: 1000
+    ttl: 3600
+    strategy: "lru"
+  
+  # Redis缓存配置
+  redis:
+    url: "${REDIS_URL:-redis://localhost:6379/0}"
+    max_connections: 20
+    socket_timeout: 5
+    socket_connect_timeout: 5
+    retry_on_timeout: true
+
+# 日志配置
+logging:
+  # 日志级别
+  level: "${DRAMACRAFT_LOG_LEVEL:-INFO}"
+  
+  # 日志文件
+  file: "/app/logs/dramacraft.log"
+  
+  # 日志格式
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # 日志轮转
+  rotation:
+    max_size: "100MB"
+    backup_count: 10
+    when: "midnight"
+    interval: 1
+  
+  # 日志级别配置
+  loggers:
+    dramacraft: "INFO"
+    uvicorn: "INFO"
+    sqlalchemy: "WARN"
+
+# 性能配置
+performance:
+  # 并发配置
+  max_concurrent_jobs: ${MAX_CONCURRENT_JOBS:-4}
+  
+  # 内存限制
+  memory_limit: "${MEMORY_LIMIT:-2GB}"
+  
+  # GPU加速
+  gpu_acceleration: ${GPU_ACCELERATION:-false}
+  
+  # 缓存配置
+  cache_enabled: true
+  cache_size: "1GB"
+  
+  # 预加载配置
+  preload_models: false
+  
+  # 资源监控
+  monitoring:
+    enabled: true
+    interval: 60
+    metrics_retention: 86400
+
+# 监控配置
+monitoring:
+  # 健康检查
+  health_check:
+    enabled: true
+    endpoint: "/health"
+    interval: 30
+  
+  # 指标收集
+  metrics:
+    enabled: true
+    endpoint: "/metrics"
+    include_system: true
+    include_application: true
+  
+  # 告警配置
+  alerts:
+    enabled: false
+    webhook_url: "${ALERT_WEBHOOK_URL}"
+    thresholds:
+      cpu_usage: 80
+      memory_usage: 85
+      disk_usage: 90
+      error_rate: 5
+
+# 存储配置
+storage:
+  # 本地存储
+  local:
+    base_path: "/app/data"
+    temp_path: "/app/temp"
+    cache_path: "/app/cache"
+  
+  # 对象存储（可选）
+  s3:
+    enabled: false
+    bucket: "${S3_BUCKET}"
+    region: "${S3_REGION}"
+    access_key: "${S3_ACCESS_KEY}"
+    secret_key: "${S3_SECRET_KEY}"
+    endpoint: "${S3_ENDPOINT}"
+
+# 任务队列配置
+queue:
+  # 队列类型
+  type: "${QUEUE_TYPE:-memory}"
+  
+  # 内存队列配置
+  memory:
+    max_size: 1000
+  
+  # Redis队列配置
+  redis:
+    url: "${REDIS_URL:-redis://localhost:6379/1}"
+    queue_name: "dramacraft_tasks"
+  
+  # 工作进程配置
+  workers:
+    count: ${QUEUE_WORKERS:-2}
+    timeout: 300
+    retry_count: 3
+    retry_delay: 60
+
+# 开发配置
+development:
+  # 调试模式
+  debug: true
+  
+  # 热重载
+  reload: true
+  
+  # 详细日志
+  verbose_logging: true
+  
+  # 测试模式
+  testing: false
+  
+  # 模拟AI响应
+  mock_ai_responses: false
+
+# 生产配置
+production:
+  # 安全模式
+  secure: true
+  
+  # 性能优化
+  optimize: true
+  
+  # 错误处理
+  error_handling:
+    show_details: false
+    log_errors: true
+    notify_errors: true
+  
+  # 备份配置
+  backup:
+    enabled: true
+    interval: "daily"
+    retention: 30
+    location: "/app/backups"
