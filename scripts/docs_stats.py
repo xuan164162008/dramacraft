@@ -10,7 +10,6 @@ import re
 import json
 from pathlib import Path
 from typing import Dict, List, Any
-import markdown
 from collections import defaultdict
 
 def count_words(text: str) -> int:
