@@ -1,7 +1,6 @@
 ---
 title: DramaCraft - 企业级视频编辑MCP服务
 description: 专业的AI驱动视频处理解决方案，为开发者和企业提供强大的视频编辑能力
-template: home.html
 hide:
   - navigation
   - toc

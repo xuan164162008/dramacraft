@@ -21,7 +21,6 @@ copyright: |
 theme:
   name: material
   language: zh
-  custom_dir: docs/overrides
   
   # 调色板配置
   palette:
@@ -116,16 +115,7 @@ plugins:
       show_line_count: true
       count_empty_lines: true
 
-  # 社交卡片插件
-  - social:
-      cards: true
-      cards_layout_options:
-        background_color: "#1e3a8a"
-        color: "#ffffff"
 
-  # 离线搜索插件
-  - offline:
-      enabled: !ENV [OFFLINE, false]
 
   # 压缩插件
   - minify:
@@ -144,11 +134,7 @@ plugins:
           'dark' : 'light'
 
   # 宏插件
-  - macros:
-      include_dir: docs/includes
-      include_yaml:
-        - docs/data/api.yml
-        - docs/data/examples.yml
+  - macros
 
   # 重定向插件
   - redirects:
