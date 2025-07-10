@@ -4,7 +4,7 @@
 
 [![Python Version](https://img.shields.io/badge/python-3.9+-blue.svg)](https://python.org)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Documentation](https://img.shields.io/badge/docs-latest-brightgreen.svg)](https://dramacraft.readthedocs.io)
+[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://agions.github.io/dramacraft)
 [![GitHub Stars](https://img.shields.io/github/stars/dramacraft/dramacraft.svg)](https://github.com/agions/dramacraft)
 
 ## ✨ 核心特性
@@ -330,11 +330,51 @@ git push origin feature/amazing-feature
 - [Pydantic](https://pydantic.dev/) - 数据验证库
 - [uv](https://github.com/astral-sh/uv) - 现代 Python 包管理器
 
+## 🛠️ 开发
+
+### 本地开发
+
+```bash
+# 安装开发依赖
+python scripts/dev.py install
+
+# 启动文档服务器
+python scripts/dev.py serve
+
+# 代码质量检查
+python scripts/dev.py lint
+
+# 运行测试
+python scripts/dev.py test
+
+# 完整开发流程
+python scripts/dev.py all
+```
+
+### 构建文档
+
+```bash
+# 本地构建
+mkdocs build
+
+# 本地预览
+mkdocs serve
+
+# 检查部署状态
+python scripts/check_deployment.py
+```
+
+## 📚 文档
+
+- **完整文档**: https://agions.github.io/dramacraft
+- **快速开始**: https://agions.github.io/dramacraft/getting-started/
+- **API参考**: https://agions.github.io/dramacraft/api-reference/
+
 ## 📞 联系我们
 
-- 📧 邮箱: contact@dramacraft.com
-- 💬 GitHub Discussions: [讨论区](https://github.com/dramacraft/dramacraft/discussions)
-- 🐛 问题反馈: [Issues](https://github.com/dramacraft/dramacraft/issues)
+- 📧 邮箱: 1051736049@qq.com
+- 💬 GitHub Discussions: [讨论区](https://github.com/Agions/dramacraft/discussions)
+- 🐛 问题反馈: [Issues](https://github.com/Agions/dramacraft/issues)
 
 ---
 

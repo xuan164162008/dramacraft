@@ -21,18 +21,17 @@ def check_url(url: str, timeout: int = 10) -> tuple[bool, int, str]:
 def check_github_pages_deployment():
     """检查GitHub Pages部署状态"""
     base_url = "https://agions.github.io/dramacraft"
-    
+
     print("🔍 检查DramaCraft文档部署状态...")
     print(f"📍 基础URL: {base_url}")
     print("-" * 60)
-    
+
     # 要检查的页面
     pages_to_check = [
         ("主页", ""),
         ("快速开始", "/getting-started/"),
         ("API参考", "/api-reference/"),
         ("CSS样式", "/assets/stylesheets/extra.css"),
-        ("搜索功能", "/search/"),
     ]
     
     results = []

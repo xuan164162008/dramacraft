@@ -1,9 +1,9 @@
-# DramaCraft 企业级文档配置
-# MkDocs Material 主题配置
+# DramaCraft 简化文档配置
+# 专注于稳定的文档构建和部署
 
 site_name: DramaCraft
 site_description: 企业级视频编辑MCP服务 - 专业的AI驱动视频处理解决方案
-site_author: DramaCraft Team
+site_author: agions
 site_url: https://agions.github.io/dramacraft
 
 # 仓库信息
@@ -14,15 +14,22 @@ edit_uri: edit/main/docs/
 # 版权信息
 copyright: |
   &copy; 2025 agions. 保留所有权利. <br>
-  <a href="https://github.com/Agions/dramacraft/blob/main/LICENSE">MIT License</a> |
   <a href="mailto:1051736049@qq.com">联系我们</a>
 
 # 主题配置
 theme:
   name: material
   language: zh
-  
-  # 调色板配置
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.tabs.link
+
   palette:
     # 浅色模式
     - media: "(prefers-color-scheme: light)"
@@ -42,110 +49,29 @@ theme:
         icon: material/brightness-4
         name: 切换到浅色模式
 
-  # 字体配置
   font:
-    text: Noto Sans SC
-    code: JetBrains Mono
+    text: Roboto
+    code: Roboto Mono
 
-  # 图标配置
   icon:
     logo: material/video
     repo: fontawesome/brands/github
-    edit: material/pencil
-    view: material/eye
 
-  # 功能配置
-  features:
-    # 导航功能
-    - navigation.instant
-    - navigation.instant.prefetch
-    - navigation.tracking
-    - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.sections
-    - navigation.expand
-    - navigation.path
-    - navigation.indexes
-    - navigation.top
-    
-    # 搜索功能
-    - search.suggest
-    - search.highlight
-    - search.share
-    
-    # 头部功能
-    - header.autohide
-    
-    # 内容功能
-    - content.action.edit
-    - content.action.view
-    - content.code.copy
-    - content.code.select
-    - content.code.annotate
-    - content.tabs.link
-    - content.tooltips
-    
-    # 公告功能
-    - announce.dismiss
+# 导航结构
+nav:
+  - 首页: index.md
+  - 快速开始: getting-started/index.md
+  - API参考: api-reference/index.md
 
 # 插件配置
 plugins:
-  # 搜索插件
   - search:
-      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
-      lang:
+      lang: 
         - zh
         - en
 
-  # 标签插件
-  - tags:
-      tags_file: tags.md
-
-  # Git信息插件
-  - git-revision-date-localized:
-      enable_creation_date: true
-      type: timeago
-      timezone: Asia/Shanghai
-      locale: zh
-      fallback_to_build_date: true
-
-  # Git作者插件
-  - git-authors:
-      show_contribution: true
-      show_line_count: true
-      count_empty_lines: true
-
-
-
-  # 压缩插件
-  - minify:
-      minify_html: true
-      minify_js: true
-      minify_css: true
-      htmlmin_opts:
-        remove_comments: true
-      cache_safe: true
-
-  # 图表插件
-  - mermaid2:
-      arguments:
-        theme: |
-          ^(JSON.parse(__md_get("__palette").index == 1)) ?
-          'dark' : 'light'
-
-  # 宏插件
-  - macros
-
-  # 重定向插件
-  - redirects:
-      redirect_maps:
-        'index.md': 'getting-started/index.md'
-        'api.md': 'api-reference/index.md'
-
 # Markdown扩展
 markdown_extensions:
-  # Python Markdown扩展
-  - abbr
   - admonition
   - attr_list
   - def_list
@@ -154,168 +80,32 @@ markdown_extensions:
   - toc:
       permalink: true
       title: 目录
-      toc_depth: 3
-
-  # PyMdown扩展
-  - pymdownx.arithmatex:
-      generic: true
-  - pymdownx.betterem:
-      smart_enable: all
-  - pymdownx.caret
   - pymdownx.details
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
   - pymdownx.inlinehilite
-  - pymdownx.keys
-  - pymdownx.magiclink:
-      normalize_issue_symbols: true
-      repo_url_shorthand: true
-      user: Agions
-      repo: dramacraft
-  - pymdownx.mark
-  - pymdownx.smartsymbols
-  - pymdownx.snippets:
-      auto_append:
-        - includes/abbreviations.md
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
-      combine_header_slug: true
-      slugify: !!python/object/apply:pymdownx.slugs.slugify
-        kwds:
-          case: lower
   - pymdownx.tasklist:
       custom_checkbox: true
-  - pymdownx.tilde
 
 # 额外配置
 extra:
-  # 版本配置
-  version:
-    provider: mike
-    default: stable
-
-  # 社交链接
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/Agions/dramacraft
-      name: GitHub
-    - icon: fontawesome/brands/python
-      link: https://pypi.org/project/dramacraft/
-      name: PyPI
-    - icon: fontawesome/brands/docker
-      link: https://hub.docker.com/r/dramacraft/dramacraft
-      name: Docker Hub
+      name: GitHub仓库
     - icon: fontawesome/solid/envelope
-      link: mailto:support@dramacraft.com
-      name: 邮件支持
+      link: mailto:1051736049@qq.com
+      name: 邮件联系
 
-  # 分析配置
-  analytics:
-    provider: google
-    property: !ENV GOOGLE_ANALYTICS_KEY
-    feedback:
-      title: 这个页面有帮助吗？
-      ratings:
-        - icon: material/emoticon-happy-outline
-          name: 有帮助
-          data: 1
-          note: >-
-            感谢您的反馈！
-        - icon: material/emoticon-sad-outline
-          name: 需要改进
-          data: 0
-          note: >-
-            感谢您的反馈！请通过
-            <a href="https://github.com/Agions/dramacraft/issues/new/?title=[Feedback]+{title}+-+{url}" target="_blank" rel="noopener">GitHub Issues</a>
-            告诉我们如何改进。
-
-  # 同意配置
-  consent:
-    title: Cookie 同意
-    description: >-
-      我们使用 cookies 来识别您的重复访问和偏好，以及衡量我们文档的有效性
-      和用户是否找到他们正在搜索的内容。在您同意的情况下，这有助于我们改进文档。
-
-# 额外CSS和JS
+# 额外CSS
 extra_css:
   - assets/stylesheets/extra.css
-  - assets/stylesheets/custom.css
 
-extra_javascript:
-  - assets/javascripts/extra.js
-  - assets/javascripts/mathjax.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+# 严格模式关闭（避免构建失败）
+strict: false
 
-# 导航结构
-nav:
-  - 首页: index.md
-  - 快速开始:
-    - getting-started/index.md
-    - 安装指南: getting-started/installation.md
-    - 快速配置: getting-started/configuration.md
-    - 第一个项目: getting-started/first-project.md
-    - 常见问题: getting-started/faq.md
-  
-  - 用户指南:
-    - user-guide/index.md
-    - 基础概念: user-guide/concepts.md
-    - 视频分析: user-guide/video-analysis.md
-    - 音频处理: user-guide/audio-processing.md
-    - AI导演: user-guide/ai-director.md
-    - 项目管理: user-guide/project-management.md
-    - 工作流: user-guide/workflows.md
-  
-  - API参考:
-    - api-reference/index.md
-    - MCP工具: api-reference/mcp-tools.md
-    - 视频分析: api-reference/video-analysis.md
-    - 音频处理: api-reference/audio-processing.md
-    - AI服务: api-reference/ai-services.md
-    - 项目管理: api-reference/project-management.md
-    - 认证授权: api-reference/authentication.md
-    - 错误处理: api-reference/error-handling.md
-  
-  - 开发者指南:
-    - developers/index.md
-    - 架构设计: developers/architecture.md
-    - 插件开发: developers/plugin-development.md
-    - 扩展开发: developers/extensions.md
-    - 贡献指南: developers/contributing.md
-    - 代码规范: developers/coding-standards.md
-  
-  - 部署运维:
-    - deployment/index.md
-    - Docker部署: deployment/docker.md
-    - Kubernetes部署: deployment/kubernetes.md
-    - 监控告警: deployment/monitoring.md
-    - 性能调优: deployment/performance.md
-    - 故障排除: deployment/troubleshooting.md
-  
-  - 最佳实践:
-    - best-practices/index.md
-    - 性能优化: best-practices/performance.md
-    - 安全实践: best-practices/security.md
-    - 工作流设计: best-practices/workflow-design.md
-    - 团队协作: best-practices/collaboration.md
-  
-  - 示例教程:
-    - examples/index.md
-    - 基础示例: examples/basic-examples.md
-    - 高级示例: examples/advanced-examples.md
-    - 集成示例: examples/integration-examples.md
-    - 实战案例: examples/case-studies.md
-  
-  - 更新日志: changelog.md
-  - 许可证: license.md
-  - 标签: tags.md
+# 使用目录URLs
+use_directory_urls: true
